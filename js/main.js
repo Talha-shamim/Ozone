@@ -13,12 +13,19 @@ function myGame(){
 
 
 window.onload = function(){
+    let start_btn = document.getElementById("start_btn")
+    let initial_screen = document.getElementById("initial_screen")
+
     // call for init
     init();
-    // bring the game   
-    setTimeout(() => {
+
+    start_btn.addEventListener('click' , function(){
+        initial_screen.remove();
         myGame();
-    },3000)
+    })
+    
+    // setTimeout(() => {
+    // },3000)
 }
 
 
