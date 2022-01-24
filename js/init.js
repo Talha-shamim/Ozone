@@ -1,7 +1,7 @@
 function init(){
     // starting animation
     var canvas = document.getElementById("myCanvas");
-    var phaser_game = document.getElementById("phaser-game");
+
     H = 700;
     W = 1200;
     canvas.width = W;
@@ -16,5 +16,5 @@ function init(){
     setTimeout(() => {
         canvas.remove();
     },2950)
-
+    
 }
