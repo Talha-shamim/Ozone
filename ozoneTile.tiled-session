@@ -1,0 +1,60 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "assets/maps/map.json",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "C:/Users/HP/Desktop/map.tmx": {
+            "scale": 0.5360714285714285,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 705.1299133910727,
+                "y": 561.4923384410394
+            }
+        },
+        "C:/Users/HP/Desktop/tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/map.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 254,
+                "y": 2032
+            }
+        },
+        "assets/maps/map.json": {
+            "scale": 0.496297554347826,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 704.214632810896,
+                "y": 560.1478338238314
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/HP/Desktop/Ozone/assets/maps",
+    "last.imagePath": "C:/Users/HP/Desktop/Magic-Cliffs-Environment/PNG",
+    "map.height": 35,
+    "map.lastUsedExportFilter": "JSON map files (*.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 45,
+    "openFiles": [
+        "C:/Users/HP/Desktop/tileset.tsx",
+        "assets/maps/map.json",
+        "assets/maps/map.json"
+    ],
+    "project": "ozoneTile.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "C:/Users/HP/Desktop/tileset.tsx",
+        "assets/maps/map.json",
+        "C:/Users/HP/Desktop/map.tmx",
+        "assets/map.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx"
+}
