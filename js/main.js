@@ -6,6 +6,9 @@ function myGame(){
         type : Phaser.AUTO,
         parent : 'phaser-game',
         scene : [SceneMain],
+        physics : {
+            default : 'arcade',
+        }
     }
 
     let game = new Phaser.Game(config);
