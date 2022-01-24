@@ -7,7 +7,7 @@ function init(){
     canvas.width = W;
     canvas.height = H;
     var img = document.createElement("img");
-    img.src = "./assets/start_animation.gif";
+    img.src = "./assets/image/start_animation.gif";
     img.className = "animation"
     var src = document.getElementById("myCanvas");
     src.appendChild(img);
