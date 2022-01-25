@@ -15,7 +15,16 @@ class Laser extends Phaser.Physics.Arcade.Sprite{
         let angle = Math.atan2(pointer.y - y,pointer.x - x); 
         this.setVelocityX(Math.cos(angle) * 1000);
         this.setVelocityY(Math.sin(angle) * 1000);
-        
+    }
+
+    preUpdate(time, delta) {
+        super.preUpdate(time, delta);
+    
+        if (!this.scene.cameras.main.worldView.contains(this.x, this.y) || Math.abs(this.body.velocity.x) < 10 || Math.abs(this.body.velocity.y) < 10) {
+            console.log(this.body.velocity.x, this.body.velocity.y)
+            this.setActive(false);
+            this.setVisible(false);
+        }
     }
 }
 
@@ -70,15 +79,16 @@ class SceneMain extends Phaser.Scene{
         const aboveLayer = map.createLayer('above player', tileset, 0, 0);
 
         worldLayer.setCollisionByProperty({ collides : true });
-        // this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player,worldLayer);
-        this.physics.add.collider(this.laserGroup,worldLayer);
+        this.physics.add.collider(this.laserGroup,worldLayer,this.destroyLaser);
         this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
 
         this.cursor = this.input.keyboard.createCursorKeys();
 
         this.addEvents();
     }
+
+    
 
     addEvents(){
         this.input.on('pointermove', pointer => {
