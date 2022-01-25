@@ -3,10 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "assets/maps/map.json",
+    "activeFile": "ozoneMap.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
         "C:/Users/HP/Desktop/map.tmx": {
             "scale": 0.5360714285714285,
             "selectedLayer": 0,
@@ -34,6 +37,20 @@
                 "x": 704.214632810896,
                 "y": 560.1478338238314
             }
+        },
+        "ozoneMap.tmx": {
+            "scale": 0.496297554347826,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 704.214632810896,
+                "y": 560.1478338238314
+            }
+        },
+        "ozoneMap.tmx#cloud": {
+            "scaleInDock": 1
+        },
+        "ozoneMap.tmx#ozone": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Ozone/assets/maps",
@@ -43,13 +60,12 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 45,
     "openFiles": [
-        "C:/Users/HP/Desktop/tileset.tsx",
-        "assets/maps/map.json",
-        "assets/maps/map.json"
+        "ozoneMap.tmx"
     ],
     "project": "ozoneTile.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "ozoneMap.tmx",
         "C:/Users/HP/Desktop/tileset.tsx",
         "assets/maps/map.json",
         "C:/Users/HP/Desktop/map.tmx",
