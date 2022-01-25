@@ -58,7 +58,7 @@ class SceneMain extends Phaser.Scene{
     preload = function() {
         this.load.image("player",'../assets/image/player.png');
         this.load.image("tiles",'../assets/image/ozone.png');
-        this.load.image("laser",'../assets/image/laser.jpg');  
+        this.load.image("laser",'../assets/image/laser.png');  
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap.json');
     }
     
