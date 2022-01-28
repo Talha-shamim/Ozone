@@ -1,57 +1,6 @@
-class Laser extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene,x,y){
-        super(scene,x,y,'laser');
-    }
-
-    fire(x,y,pointer){
-        this.body.reset(x,y);
-
-        this.setActive(true);
-        this.setVisible(true);
-        this.displayHeight = 20;
-        this.displayWidth = 20;
-
-        // setting angle for laser
-        let angle = Math.atan2(pointer.y - y,pointer.x - x); 
-        this.setVelocityX(Math.cos(angle) * 1000);
-        this.setVelocityY(Math.sin(angle) * 1000);
-    }
-
-    preUpdate(time, delta) {
-        super.preUpdate(time, delta);
-    
-        if (!this.scene.cameras.main.worldView.contains(this.x, this.y) || Math.abs(this.body.velocity.x) < 10 || Math.abs(this.body.velocity.y) < 10) {
-            this.setActive(false);
-            this.setVisible(false);
-        }
-    }
-}
-
-class LaserGroup extends Phaser.Physics.Arcade.Group{
-    constructor(scene){
-        super(scene.physics.world,scene);
-        
-        this.createMultiple({
-            classType : Laser,
-            frameQuantity : 30,
-            active : false,
-            visible : false,
-            key : 'laser',
-        })
-    }
-
-    fireLaser(x,y,pointer){
-        const laser = this.getFirstDead(true);        
-        if(laser){
-            laser.fire(x,y,pointer);
-        }
-    }
-}
-
 class SceneMain extends Phaser.Scene{
     constructor(){
-        super();
-        this.LaserGroup;    
+        super(); 
     }
 
     preload = function() {
@@ -67,8 +16,6 @@ class SceneMain extends Phaser.Scene{
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
 
-        //laser
-        this.laserGroup = new LaserGroup(this); 
         
         //==============================create tile===============================
         const map = this.make.tilemap({key : 'map'});
@@ -78,22 +25,17 @@ class SceneMain extends Phaser.Scene{
 
         worldLayer.setCollisionByProperty({ collide : true });
         this.physics.add.collider(this.player,worldLayer);
-        this.physics.add.collider(this.laserGroup,worldLayer);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
-
         this.cursor = this.input.keyboard.createCursorKeys();
-        this.addEvents();
+        this.input.on('pointerdown', this.shoot, this);
     }
+    shoot()
+    {
+        this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.2).setOrigin(0, 0.5);
 
+        this.physics.moveTo(this.laser, this.game.input.mousePointer.x,this.game.input.mousePointer.y, 600);
 
-    addEvents(){
-        this.input.on('pointermove', pointer => {
-            this.shootLaser(pointer);
-        })
-    }
-
-    shootLaser(pointer){
-        this.laserGroup.fireLaser(this.player.x,this.player.y,this.input.mousePointer);
+        // this.ammo.setVelocityY(-300);
     }
 
     
