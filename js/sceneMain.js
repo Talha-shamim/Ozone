@@ -63,7 +63,7 @@ class SceneMain extends Phaser.Scene{
     
     create = function() {
         //=============================add player==============================
-        this.player = this.physics.add.image(200,568,"player");
+        this.player = this.physics.add.image(200,566,"player");
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
 
