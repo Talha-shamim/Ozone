@@ -1,65 +1,14 @@
-class Laser extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene,x,y){
-        super(scene,x,y,'laser');
-    }
-
-    fire(x,y,pointer){
-        this.body.reset(x,y);
-
-        this.setActive(true);
-        this.setVisible(true);
-        this.displayHeight = 20;
-        this.displayWidth = 20;
-
-        // setting angle for laser
-        let angle = Math.atan2(pointer.y - y,pointer.x - x); 
-        this.setVelocityX(Math.cos(angle) * 1000);
-        this.setVelocityY(Math.sin(angle) * 1000);
-    }
-
-    preUpdate(time, delta) {
-        super.preUpdate(time, delta);
-    
-        if (!this.scene.cameras.main.worldView.contains(this.x, this.y) || Math.abs(this.body.velocity.x) < 10 || Math.abs(this.body.velocity.y) < 10) {
-            this.setActive(false);
-            this.setVisible(false);
-        }
-    }
-}
-
-class LaserGroup extends Phaser.Physics.Arcade.Group{
-    constructor(scene){
-        super(scene.physics.world,scene);
-        
-        this.createMultiple({
-            classType : Laser,
-            frameQuantity : 30,
-            active : false,
-            visible : false,
-            key : 'laser',
-        })
-    }
-
-    fireLaser(x,y,pointer){
-        const laser = this.getFirstDead(true);        
-        if(laser){
-            laser.fire(x,y,pointer);
-        }
-    }
-}
-
 class SceneMain extends Phaser.Scene{
     constructor(){
-        super();
-        this.LaserGroup;    
+        super(); 
     }
 
     preload = function() {
         this.load.image("player",'../assets/image/player.png');
         this.load.image("tiles",'../assets/image/ozone.png');
         this.load.image("laser",'../assets/image/laser.png');  
-        this.load.image("factory",'../assets/image/factory.png');  
-        this.load.image("ozone",'../assets/image/ozone.jpg');  
+        this.load.image("factory", '../assets/image/factory.png');
+        this.load.image("gas", '../assets/image/gases.png');
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
     }
     
@@ -82,10 +31,6 @@ class SceneMain extends Phaser.Scene{
         this.player.displayWidth = 60;
 
 
-        //laser
-        this.laserGroup = new LaserGroup(this); 
-
-        this.ozoneLayer.y -= 50;
         
         //==============================create tile===============================
         const map = this.make.tilemap({key : 'map'});
@@ -98,21 +43,16 @@ class SceneMain extends Phaser.Scene{
         this.physics.add.collider(this.player,this.factory);
         this.physics.add.collider(this.laserGroup,worldLayer);
         this.physics.add.collider(this.laserGroup,this.factory);
-        // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
-
         this.cursor = this.input.keyboard.createCursorKeys();
-        this.addEvents();
+        this.input.on('pointerdown', this.shoot, this);
+        this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
     }
 
+    shoot(){
+        this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.2).setOrigin(0, 0.5);
 
-    addEvents(){
-        this.input.on('pointermove', pointer => {
-            this.shootLaser(pointer);
-        })
-    }
-
-    shootLaser(pointer){
-        this.laserGroup.fireLaser(this.player.x,this.player.y,this.input.mousePointer);
+        this.physics.moveTo(this.laser, this.game.input.mousePointer.x,this.game.input.mousePointer.y, 600);
+        // this.ammo.setVelocityY(-300);
     }
 
     
