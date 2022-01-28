@@ -29,12 +29,10 @@ class SceneMain extends Phaser.Scene{
         worldLayer.setCollisionByProperty({ collide : true });
         this.physics.add.collider(this.player,worldLayer);
         this.physics.add.collider(this.player,this.factory);
-        this.physics.add.collider(this.laserGroup,worldLayer);
-        this.physics.add.collider(this.laserGroup,this.factory);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
-        this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
+       
     }
     shoot()
     {
