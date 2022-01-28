@@ -39,11 +39,11 @@
             }
         },
         "ozoneMap.tmx": {
-            "scale": 0.496297554347826,
-            "selectedLayer": 2,
+            "scale": 0.4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 704.214632810896,
-                "y": 560.1478338238314
+                "x": 702.5,
+                "y": 557.5
             }
         },
         "ozoneMap.tmx#cloud": {
@@ -51,13 +51,28 @@
         },
         "ozoneMap.tmx#ozone": {
             "scaleInDock": 1
+        },
+        "ozoneMap2.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 97
+            }
+        },
+        "ozoneMap2.tmx#ozone2": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "C:/Users/HP/Desktop/Ozone/assets/maps",
     "last.imagePath": "C:/Users/HP/Desktop/Magic-Cliffs-Environment/PNG",
+    "map.fixedSize": false,
     "map.height": 35,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
+    "map.orientation": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
     "map.width": 45,
     "openFiles": [
         "ozoneMap.tmx"
@@ -65,12 +80,18 @@
     "project": "ozoneTile.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "ozoneMap2.tmx",
         "ozoneMap.tmx",
         "C:/Users/HP/Desktop/tileset.tsx",
         "assets/maps/map.json",
         "C:/Users/HP/Desktop/map.tmx",
         "assets/map.tmx"
     ],
+    "resizeMap.removeObjects": false,
     "tileset.embedInMap": true,
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }

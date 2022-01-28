@@ -17,14 +17,6 @@
     z-index: 1;
 }
 
-#phaser-game{
-    height: 100vh;
-    width: 100vw;
-    z-index: 1;
-    background: #333333;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #dd1818, #333333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
 #start_btn{
     width: 300px;
@@ -92,4 +84,5 @@
     top: 20%;
     left: 15%;
 }
+
 
