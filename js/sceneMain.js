@@ -59,18 +59,33 @@ class SceneMain extends Phaser.Scene{
         this.load.image("tiles",'../assets/image/ozone.png');
         this.load.image("laser",'../assets/image/laser.png');  
         this.load.image("factory",'../assets/image/factory.png');  
+        this.load.image("ozone",'../assets/image/ozone.jpg');  
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
     }
     
     create = function() {
         //=============================add player==============================
         this.player = this.physics.add.image(200,566,"player");
-        this.factory = this.physics.add.image(1000,480,"factory").setImmovable();;
+        this.factory = this.physics.add.image(1000,480,"factory").setImmovable();
+        this.ozoneLayer = this.physics.add.image(1000,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(750,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(500,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(250,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(0,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(-250,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(-500,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(1250,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(1500,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(1750,-30,"ozone").setImmovable();
+        // this.ozoneLayer = this.physics.add.image(2000,-30,"ozone").setImmovable();
         this.player.displayHeight = 60;
-        this.player.displayWidth = 60
+        this.player.displayWidth = 60;
+
 
         //laser
         this.laserGroup = new LaserGroup(this); 
+
+        this.ozoneLayer.y -= 50;
         
         //==============================create tile===============================
         const map = this.make.tilemap({key : 'map'});

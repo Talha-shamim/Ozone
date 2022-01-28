@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "ozoneMap.tmx",
+    "activeFile": "ozoneMap2.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
@@ -56,8 +56,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 271,
-                "y": 97
+                "x": 1067,
+                "y": 465
             }
         },
         "ozoneMap2.tmx#ozone2": {
@@ -75,7 +75,7 @@
     "map.tileWidth": 16,
     "map.width": 45,
     "openFiles": [
-        "ozoneMap.tmx"
+        "ozoneMap2.tmx"
     ],
     "project": "ozoneTile.tiled-project",
     "property.type": "bool",
