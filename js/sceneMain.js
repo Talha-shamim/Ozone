@@ -58,12 +58,14 @@ class SceneMain extends Phaser.Scene{
         this.load.image("player",'../assets/image/player.png');
         this.load.image("tiles",'../assets/image/ozone.png');
         this.load.image("laser",'../assets/image/laser.png');  
+        this.load.image("factory",'../assets/image/factory.png');  
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
     }
     
     create = function() {
         //=============================add player==============================
         this.player = this.physics.add.image(200,566,"player");
+        this.factory = this.physics.add.image(1000,480,"factory").setImmovable();;
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
 
@@ -78,7 +80,9 @@ class SceneMain extends Phaser.Scene{
 
         worldLayer.setCollisionByProperty({ collide : true });
         this.physics.add.collider(this.player,worldLayer);
+        this.physics.add.collider(this.player,this.factory);
         this.physics.add.collider(this.laserGroup,worldLayer);
+        this.physics.add.collider(this.laserGroup,this.factory);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
 
         this.cursor = this.input.keyboard.createCursorKeys();
