@@ -15,21 +15,9 @@ class SceneMain extends Phaser.Scene{
     create = function() {
         //=============================add player==============================
         this.player = this.physics.add.image(200,566,"player");
-        this.factory = this.physics.add.image(1000,480,"factory").setImmovable();
-        this.ozoneLayer = this.physics.add.image(1000,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(750,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(500,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(250,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(0,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(-250,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(-500,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(1250,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(1500,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(1750,-30,"ozone").setImmovable();
-        // this.ozoneLayer = this.physics.add.image(2000,-30,"ozone").setImmovable();
+        this.factory = this.physics.add.image(1000,480,"factory").setImmovable();;
         this.player.displayHeight = 60;
-        this.player.displayWidth = 60;
-
+        this.player.displayWidth = 60
 
         
         //==============================create tile===============================
@@ -41,18 +29,17 @@ class SceneMain extends Phaser.Scene{
         worldLayer.setCollisionByProperty({ collide : true });
         this.physics.add.collider(this.player,worldLayer);
         this.physics.add.collider(this.player,this.factory);
-        this.physics.add.collider(this.laserGroup,worldLayer);
-        this.physics.add.collider(this.laserGroup,this.factory);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
        
     }
-
-    shoot(){
+    shoot()
+    {
         this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.2).setOrigin(0, 0.5);
 
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x,this.game.input.mousePointer.y, 600);
+
         // this.ammo.setVelocityY(-300);
     }
 
