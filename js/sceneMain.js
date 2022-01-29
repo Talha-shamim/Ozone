@@ -8,6 +8,7 @@ class SceneMain extends Phaser.Scene{
         this.load.image("tiles",'../assets/image/ozone.png');
         this.load.image("laser",'../assets/image/laser.png');  
         this.load.image("factory", '../assets/image/factory.png');
+        this.load.image("ozone", '../assets/image/ozone.jpg');
         this.load.image("gas", '../assets/image/gases.png');
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
         this.load.audio('gdestroy', '../assets/audio/gasdestroy.wav');
@@ -15,11 +16,14 @@ class SceneMain extends Phaser.Scene{
     
     create = function() {
         //=============================add player==============================
-        this.player = this.physics.add.image(200,566,"player");
-        this.factory = this.physics.add.image(1000,480,"factory").setImmovable();;
+        this.player = this.physics.add.image(500,566,"player");
+        this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
+        this.ozone = this.physics.add.image(1000,-1300,"ozone").setImmovable().setScale(15).setDepth(-1);
+        this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
         this.gdestroy = this.sound.add('gdestroy');
+
         
         //==============================create tile===============================
         const map = this.make.tilemap({key : 'map'});
@@ -66,6 +70,7 @@ class SceneMain extends Phaser.Scene{
         this.player.setVelocityY(0);
        
 
+        
         if(this.cursor.right.isDown == true){
             this.player.setVelocityX(500);
         }
@@ -78,6 +83,8 @@ class SceneMain extends Phaser.Scene{
 
     }
     
+    
+
      // give random velocity to the group object
      static setObjectsVelocity(objects) {
          objects.children.iterate((objcet) => {
