@@ -48,12 +48,12 @@ class SceneMain extends Phaser.Scene{
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
         this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
         this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
-
         // this.ammo.setVelocityY(-300);
     }
     destroyLaser(laser, factory) {
         laser.disableBody(true, true);
     }
+
     destroyGas(laser, gas) {
         this.gdestroy.play();
         gas.disableBody(true, true);
@@ -80,7 +80,6 @@ class SceneMain extends Phaser.Scene{
         }
         this.checkRepositionForObject(this.gas);
         
-
     }
     
     
@@ -98,14 +97,16 @@ class SceneMain extends Phaser.Scene{
          const yVel = Phaser.Math.Between(-150, -200);
          object.setVelocity(xVel, yVel);
     }
+
    checkRepositionForObject(object) {
          
        if (object.y < 0) {
-            console.log("reposition");
+            
             object.y = this.factory.y;
            object.x = this.factory.x;
-           
+            power -= 10;           
         }
+
 
     }
     
