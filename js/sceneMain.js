@@ -34,17 +34,6 @@ class SceneMain extends Phaser.Scene{
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
         this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
-        // this.gas.setVelocityY(-200);
-        //  this.gases = this.physics.add.group({
-        //      key: 'gas',
-        //      repeat: 3,
-        //      setXY: {
-        //          x: 20,
-        //          y: 50,
-        //          stepX: Phaser.Math.Between(10, 400 - 15),
-        //          stepY: Phaser.Math.Between(15, 100),
-        //      },
-        //  });
         SceneMain.setObjectVelocity(this.gas);
        
     }
@@ -54,8 +43,12 @@ class SceneMain extends Phaser.Scene{
 
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
         this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
+        this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
 
         // this.ammo.setVelocityY(-300);
+    }
+    destroyLaser(laser, factory) {
+        laser.disableBody(true, true);
     }
     destroyGas(laser, gas) {
         this.gdestroy.play();
@@ -71,9 +64,8 @@ class SceneMain extends Phaser.Scene{
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
+       
 
-
-        
         if(this.cursor.right.isDown == true){
             this.player.setVelocityX(500);
         }
@@ -82,8 +74,10 @@ class SceneMain extends Phaser.Scene{
             this.player.setVelocityX(-500);
         }
         this.checkRepositionForObject(this.gas);
+        
 
     }
+    
      // give random velocity to the group object
      static setObjectsVelocity(objects) {
          objects.children.iterate((objcet) => {
@@ -106,8 +100,9 @@ class SceneMain extends Phaser.Scene{
            
         }
 
-     }
-
+    }
+    
+    
      // reset position of the object
      
 }
