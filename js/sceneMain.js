@@ -106,3 +106,4 @@ class SceneMain extends Phaser.Scene{
      // reset position of the object
      
 }
+
