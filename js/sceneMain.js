@@ -10,6 +10,7 @@ class SceneMain extends Phaser.Scene{
         this.load.image("factory", '../assets/image/factory.png');
         this.load.image("gas", '../assets/image/gases.png');
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
+        this.load.audio('gdestroy', '../assets/audio/gasdestroy.wav');
     }
     
     create = function() {
@@ -18,7 +19,7 @@ class SceneMain extends Phaser.Scene{
         this.factory = this.physics.add.image(1000,480,"factory").setImmovable();;
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
-         
+        this.gdestroy = this.sound.add('gdestroy');
         
         //==============================create tile===============================
         const map = this.make.tilemap({key : 'map'});
@@ -56,11 +57,15 @@ class SceneMain extends Phaser.Scene{
 
         // this.ammo.setVelocityY(-300);
     }
-    destroyGas()
-    {
-        console.log("destroy");
+    destroyGas(laser, gas) {
+        this.gdestroy.play();
+        gas.disableBody(true, true);
+        laser.disableBody(true, true);
+
+        gas.enableBody(true, this.factory.x, this.factory.y, true, true);
+        SceneMain.setObjectVelocity(gas);
+
     }
-    
     update = function() {
 
         // ===================================movement of player==========================
