@@ -74,8 +74,6 @@ class SceneMain extends Phaser.Scene{
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
-
-
         
         if(this.cursor.right.isDown == true){
             this.player.setVelocityX(500);
@@ -85,8 +83,8 @@ class SceneMain extends Phaser.Scene{
             this.player.setVelocityX(-500);
         }
         this.checkRepositionForObject(this.gas);
-
     }
+
      // give random velocity to the group object
      static setObjectsVelocity(objects) {
          objects.children.iterate((objcet) => {
