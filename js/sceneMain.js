@@ -19,9 +19,13 @@ class SceneMain extends Phaser.Scene{
         this.player = this.physics.add.image(500,566,"player");
         this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
         this.ozone = this.physics.add.image(1000,-1300,"ozone").setImmovable().setScale(15).setDepth(-1);
+        this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
         this.gdestroy = this.sound.add('gdestroy');
+
+        this.score = 100;
+        this.scoreText = this.add.text(30,10,'', 'score : 0', {fontSize : '32px', fill : '#000'});
 
         
         //==============================create tile===============================
@@ -37,17 +41,6 @@ class SceneMain extends Phaser.Scene{
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
         this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
-        // this.gas.setVelocityY(-200);
-        //  this.gases = this.physics.add.group({
-        //      key: 'gas',
-        //      repeat: 3,
-        //      setXY: {
-        //          x: 20,
-        //          y: 50,
-        //          stepX: Phaser.Math.Between(10, 400 - 15),
-        //          stepY: Phaser.Math.Between(15, 100),
-        //      },
-        //  });
         SceneMain.setObjectVelocity(this.gas);
        
     }
@@ -57,9 +50,13 @@ class SceneMain extends Phaser.Scene{
 
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
         this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
-
+        this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
         // this.ammo.setVelocityY(-300);
     }
+    destroyLaser(laser, factory) {
+        laser.disableBody(true, true);
+    }
+
     destroyGas(laser, gas) {
         this.gdestroy.play();
         gas.disableBody(true, true);
@@ -74,7 +71,7 @@ class SceneMain extends Phaser.Scene{
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
-
+       
 
         
         if(this.cursor.right.isDown == true){
@@ -84,9 +81,12 @@ class SceneMain extends Phaser.Scene{
         if(this.cursor.left.isDown == true){
             this.player.setVelocityX(-500);
         }
-        this.checkRepositionForObject(this.gas);
-
+        this.checkRepositionForObject(this.gas, this.score,this.scoreText);
+        
     }
+    
+    
+
      // give random velocity to the group object
      static setObjectsVelocity(objects) {
          objects.children.iterate((objcet) => {
@@ -100,18 +100,19 @@ class SceneMain extends Phaser.Scene{
          const yVel = Phaser.Math.Between(-150, -200);
          object.setVelocity(xVel, yVel);
     }
-   checkRepositionForObject(object) {
-         
+
+   checkRepositionForObject(object,score,scoreText) {
        if (object.y < 0) {
-            console.log("reposition");
+            this.score -= 10;
+            if(this.score == 0){
+                this.destroy();
+            }
+            scoreText.setText('score : '+this.score);
             object.y = this.factory.y;
            object.x = this.factory.x;
-           
         }
-
-     }
-
-     // reset position of the object
+    }
+    // reset position of the object
      
 }
 
