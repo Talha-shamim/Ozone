@@ -24,6 +24,9 @@ class SceneMain extends Phaser.Scene{
         this.player.displayWidth = 60
         this.gdestroy = this.sound.add('gdestroy');
 
+        this.score = 100;
+        this.scoreText = this.add.text(30,10,'', 'score : 0', {fontSize : '32px', fill : '#000'});
+
         
         //==============================create tile===============================
         const map = this.make.tilemap({key : 'map'});
@@ -78,7 +81,7 @@ class SceneMain extends Phaser.Scene{
         if(this.cursor.left.isDown == true){
             this.player.setVelocityX(-500);
         }
-        this.checkRepositionForObject(this.gas);
+        this.checkRepositionForObject(this.gas, this.score,this.scoreText);
         
     }
     
@@ -98,20 +101,18 @@ class SceneMain extends Phaser.Scene{
          object.setVelocity(xVel, yVel);
     }
 
-   checkRepositionForObject(object) {
-         
+   checkRepositionForObject(object,score,scoreText) {
        if (object.y < 0) {
-            
+            this.score -= 10;
+            if(this.score == 0){
+                this.destroy();
+            }
+            scoreText.setText('score : '+this.score);
             object.y = this.factory.y;
            object.x = this.factory.x;
-            power -= 10;           
         }
-
-
     }
-    
-    
-     // reset position of the object
+    // reset position of the object
      
 }
 
