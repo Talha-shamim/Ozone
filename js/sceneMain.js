@@ -1,6 +1,6 @@
 class SceneMain extends Phaser.Scene{
     constructor(){
-        super(); 
+        super('gameStart'); 
     }
 
     preload = function() {
@@ -96,20 +96,20 @@ class SceneMain extends Phaser.Scene{
 
      // give random velocity to singal object
      static setObjectVelocity(object) {
-         const xVel = Phaser.Math.Between(-100, 100);
-         const yVel = Phaser.Math.Between(-150, -200);
-         object.setVelocity(xVel, yVel);
+        const xVel = Phaser.Math.Between(-100, 100);
+        const yVel = Phaser.Math.Between(-150, -200);
+        object.setVelocity(xVel, yVel);
     }
 
    checkRepositionForObject(object,score,scoreText) {
-       if (object.y < 0) {
+        if(object.y < 0) {
             this.score -= 10;
-            if(this.score == 0){
-                this.destroy();
+            if(this.score == 90){
+                this.scene.start('gameOver');
             }
             scoreText.setText('score : '+this.score);
             object.y = this.factory.y;
-           object.x = this.factory.x;
+            object.x = this.factory.x;
         }
     }
     // reset position of the object

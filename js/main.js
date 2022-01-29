@@ -1,5 +1,4 @@
 function myGame(){
-
     let config = {
         type : Phaser.AUTO,
         width : window.innerWidth,
@@ -8,13 +7,9 @@ function myGame(){
         physics : {
             default : 'arcade',
         },
-        // scale:{
-        //     mode : Phaser.Scale.FIT,
-        //     autoCenter : Phaser.Scale.CENTER_BOTH,
-        // },
         parent : 'phaser-game',
         pixelArt : true,
-        scene : [SceneMain],
+        scene : [SceneMain, GameOver],
     }
 
     let game = new Phaser.Game(config);
