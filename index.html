@@ -43,6 +43,16 @@
 	<script async type="text/javascript" src="src/Shooter.Player.js"></script>
 </head>
 <body>
+	<div class="panels" id="debug-panel-one"></div>
+	<div class="panels" id="debug-panel-two"></div>
+	<div class="window panels" id="UI">
+		<div class="UI-box" id="player-health-ui"></div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			Shooter.set();
+			//Shooter.setup();
+		}
     <div id="myCanvas"></div>
 
     <div id="initial_screen">
