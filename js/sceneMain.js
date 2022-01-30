@@ -9,6 +9,7 @@ class SceneMain extends Phaser.Scene{
         this.load.image("laser",'../assets/image/laser.png');  
         this.load.image("factory", '../assets/image/factory.png');
         this.load.image("ozone", '../assets/image/ozone.jpg');
+        this.load.image("ozone2", '../assets/image/ozone2.jpg');
         this.load.image("gas", '../assets/image/gases.png');
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
         this.load.audio('gdestroy', '../assets/audio/gasdestroy.wav');
@@ -25,7 +26,9 @@ class SceneMain extends Phaser.Scene{
         this.gdestroy = this.sound.add('gdestroy');
 
         this.score = 100;
-        this.scoreText = this.add.text(30,10,'', 'score : 0', {fontSize : '32px', fill : '#000'});
+        this.point = 0;
+        this.scoreText = this.add.text(30,10, 'Ozone Level : 100', {fontSize : '18px', fill : '#fff'});
+        this.pointText = this.add.text(30,50, 'points : ' + this.point, {fontSize : '18px', fill : '#fff'});
 
         
         //==============================create tile===============================
@@ -60,19 +63,20 @@ class SceneMain extends Phaser.Scene{
     destroyGas(laser, gas) {
         this.gdestroy.play();
         gas.disableBody(true, true);
-        laser.disableBody(true, true);
-
+        laser.disableBody(true, true);  
+        this.point += 100;
+        this.pointText.setText('points : '+this.point);
         gas.enableBody(true, this.factory.x, this.factory.y, true, true);
         SceneMain.setObjectVelocity(gas);
-
     }
+
     update = function() {
 
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
        
-
+        
         
         if(this.cursor.right.isDown == true){
             this.player.setVelocityX(500);
@@ -104,10 +108,17 @@ class SceneMain extends Phaser.Scene{
    checkRepositionForObject(object,score,scoreText) {
         if(object.y < 0) {
             this.score -= 10;
-            if(this.score == 90){
+            if(this.score == 70){
+                this.ozone.y -= 25;
+            }
+            if(this.score == 40){
+                this.ozone.y -= 25;
+            }
+
+            if(this.score == 0){
                 this.scene.start('gameOver');
             }
-            scoreText.setText('score : '+this.score);
+            scoreText.setText('Ozone Level : '+this.score);
             object.y = this.factory.y;
             object.x = this.factory.x;
         }
