@@ -45,7 +45,7 @@ class SceneMain extends Phaser.Scene{
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
-        this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
+        this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
         this.gas1=this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
         SceneMain.setObjectVelocity(this.gas);
        
