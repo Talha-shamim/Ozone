@@ -44,8 +44,10 @@ class SceneMain extends Phaser.Scene{
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
         this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
-        this.gas1=this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
+        this.gas1 = this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
+        // SceneMain.setObjectsVelocity(this.gas1);
         SceneMain.setObjectVelocity(this.gas);
+        SceneMain.setObjectVelocity(this.gas1);
        
     }
     shoot()
@@ -54,7 +56,7 @@ class SceneMain extends Phaser.Scene{
 
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
         this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
-        this.physics.add.collider(this.laser, this.gas1, this.destroyGas, null, this);
+        this.physics.add.collider(this.laser, this.gas1, this.destroyGas1, null, this);
         this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
         this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
         // this.ammo.setVelocityY(-300);
@@ -72,6 +74,15 @@ class SceneMain extends Phaser.Scene{
         gas.enableBody(true, this.factory.x, this.factory.y, true, true);
         SceneMain.setObjectVelocity(gas);
     }
+    destroyGas1(laser, gas1) {
+        this.gdestroy.play();
+        gas1.disableBody(true, true);
+        laser.disableBody(true, true);
+        this.point += 100;
+        this.pointText.setText('points : ' + this.point);
+        gas1.enableBody(true, this.factory2.x, this.factory2.y, true, true);
+        SceneMain.setObjectVelocity(gas1);
+    }
 
     update = function() {
 
@@ -88,7 +99,8 @@ class SceneMain extends Phaser.Scene{
         if(this.cursor.left.isDown == true){
             this.player.setVelocityX(-500);
         }
-        this.checkRepositionForObject(this.gas, this.score,this.scoreText);
+        this.checkRepositionForObject(this.gas, this.score, this.scoreText);
+        this.checkRepositionForObject(this.gas1, this.score, this.scoreText);
         
     }
     
