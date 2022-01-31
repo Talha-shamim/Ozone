@@ -19,7 +19,7 @@ class SceneMain extends Phaser.Scene{
         //=============================add player==============================
         this.player = this.physics.add.image(500,566,"player");
         this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
-        this.ozone = this.physics.add.image(1000,-1300,"ozone").setImmovable().setScale(15).setDepth(-1);
+        this.ozone = this.physics.add.image(1000,-1200,"ozone").setImmovable().setScale(15).setDepth(-1);
         this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
@@ -41,14 +41,13 @@ class SceneMain extends Phaser.Scene{
         worldLayer.setCollisionByProperty({ collide : true });
         this.physics.add.collider(this.player,worldLayer);
         this.physics.add.collider(this.player,this.factory);
+        this.physics.add.collider(this.player,this.factory2);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
         this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
-        this.gas1 = this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
-        // SceneMain.setObjectsVelocity(this.gas1);
+        this.gas1=this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
         SceneMain.setObjectVelocity(this.gas);
-        SceneMain.setObjectVelocity(this.gas1);
        
     }
     shoot()
@@ -57,13 +56,14 @@ class SceneMain extends Phaser.Scene{
 
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
         this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
-        this.physics.add.collider(this.laser, this.gas1, this.destroyGas1, null, this);
+        this.physics.add.collider(this.laser, this.gas1, this.destroyGas, null, this);
         this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
         this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
-        // this.ammo.setVelocityY(-300);
+
         if(this.point == 200 && this.activateBrahmos == false){
             this.activateBrahmos = true;   
         }
+        // this.ammo.setVelocityY(-300);
     }
     destroyLaser(laser, factory) {
         laser.disableBody(true, true);
@@ -78,22 +78,12 @@ class SceneMain extends Phaser.Scene{
         gas.enableBody(true, this.factory.x, this.factory.y, true, true);
         SceneMain.setObjectVelocity(gas);
     }
-    destroyGas1(laser, gas1) {
-        this.gdestroy.play();
-        gas1.disableBody(true, true);
-        laser.disableBody(true, true);
-        this.point += 100;
-        this.pointText.setText('points : ' + this.point);
-        gas1.enableBody(true, this.factory2.x, this.factory2.y, true, true);
-        SceneMain.setObjectVelocity(gas1);
-    }
 
     update = function() {
 
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
-       
         
         
         if(this.cursor.right.isDown == true){
@@ -103,8 +93,7 @@ class SceneMain extends Phaser.Scene{
         if(this.cursor.left.isDown == true){
             this.player.setVelocityX(-500);
         }
-        this.checkRepositionForObject(this.gas, this.score, this.scoreText);
-        this.checkRepositionForObject1(this.gas1, this.score, this.scoreText);
+        this.checkRepositionForObject(this.gas, this.score,this.scoreText);
         
     }
     
@@ -128,38 +117,20 @@ class SceneMain extends Phaser.Scene{
         if(object.y < 0) {
             this.score -= 10;
             if(this.score == 70){
-                this.ozone.y -= 25;
+                this.ozone.y -= 50;
             }
             if(this.score == 40){
-                this.ozone.y -= 25;
+                this.ozone.y -= 50;
             }
 
-            if(this.score == 0){
-                this.scene.start('gameOver');
+            if(this.score == 90){
+                this.scene.start('gameOver', {point : this.point});
             }
             scoreText.setText('Ozone Level : '+this.score);
             object.y = this.factory.y;
             object.x = this.factory.x;
         }
     }
-    checkRepositionForObject1(object, score, scoreText) {
-        if (object.y < 0) {
-            this.score -= 10;
-            if (this.score == 70) {
-                this.ozone.y -= 10;
-            }
-            if (this.score == 40) {
-                this.ozone.y -= 10;
-            }
-            if(this.score == 0){
-                this.scene.start('gameOver');
-            }
-            scoreText.setText('Ozone Level : ' + this.score);
-            object.y = this.factory2.y;
-            object.x = this.factory2.x;
-        }
-    }
-
     // reset position of the object
      
 }
