@@ -48,6 +48,7 @@ class SceneMain extends Phaser.Scene{
         this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.2).setOrigin(0, 0.5);
         this.gas1=this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
         SceneMain.setObjectVelocity(this.gas);
+        SceneMain.setObjectVelocity(this.gas1);
        
     }
     shoot()
@@ -93,7 +94,8 @@ class SceneMain extends Phaser.Scene{
         if(this.cursor.left.isDown == true){
             this.player.setVelocityX(-500);
         }
-        this.checkRepositionForObject(this.gas, this.score,this.scoreText);
+        this.checkRepositionForObject(this.gas, this.score, this.scoreText);
+        this.checkRepositionForObject1(this.gas1, this.score, this.scoreText);
         
     }
     
@@ -131,6 +133,24 @@ class SceneMain extends Phaser.Scene{
             object.x = this.factory.x;
         }
     }
+    checkRepositionForObject1(object, score, scoreText) {
+        if (object.y < 0) {
+            this.score -= 10;
+            if (this.score == 70) {
+                this.ozone.y -= 50;
+            }
+            if (this.score == 40) {
+                this.ozone.y -= 50;
+            }
+            if(this.score == 90){
+                this.scene.start('gameOver', {point : this.point});
+            }
+            scoreText.setText('Ozone Level : ' + this.score);
+            object.y = this.factory2.y;
+            object.x = this.factory2.x;
+        }
+    }
+
     // reset position of the object
      
 }
