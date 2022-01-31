@@ -125,7 +125,7 @@ class SceneMain extends Phaser.Scene{
                 this.ozone.y -= 50;
             }
 
-            if(this.score == 90){
+            if(this.score == 0){
                 this.scene.start('gameOver', {point : this.point});
             }
             scoreText.setText('Ozone Level : '+this.score);
