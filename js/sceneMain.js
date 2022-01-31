@@ -11,6 +11,7 @@ class SceneMain extends Phaser.Scene{
         this.load.image("ozone", '../assets/image/ozone.jpg');
         this.load.image("ozone2", '../assets/image/ozone2.jpg');
         this.load.image("gas", '../assets/image/gases.png');
+        this.load.image("back2", '../assets/image/back2.webp');
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
         this.load.audio('gdestroy', '../assets/audio/gasdestroy.wav');
     }
@@ -89,7 +90,6 @@ class SceneMain extends Phaser.Scene{
         SceneMain.setObjectVelocity(gas);
     }
     update = function() {
-
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
@@ -133,7 +133,7 @@ class SceneMain extends Phaser.Scene{
                 this.ozone.y -= 50;
             }
 
-            if(this.score == 0){
+            if(this.score <= 0){
                 this.scene.start('gameOver', {point : this.point});
             }
             scoreText.setText('Ozone Level : '+this.score);
@@ -150,7 +150,7 @@ class SceneMain extends Phaser.Scene{
             if (this.score == 40) {
                 this.ozone.y -= 50;
             }
-            if(this.score == 90){
+            if(this.score <= 0){
                 this.scene.start('gameOver', {point : this.point});
             }
             scoreText.setText('Ozone Level : ' + this.score);

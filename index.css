@@ -95,3 +95,36 @@
     background: linear-gradient(to right, #dd1818, #333333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+#msg{
+    width: 300px;
+    height: 60px;
+    position: absolute;
+    top: 30%;
+    left: 80%;
+    margin: -30px 0 0 -150px;
+    color: white;
+}
+
+#wizard{
+    width: 200px;
+    height: 250px;
+}
+
+#arrow{
+    height: 30px;
+    width: 30px;
+}
+
+#guide2{
+    display: none;
+}
+
+#rules{
+    display: none;
+}
+
+#startGame{
+    display: none;
+    font-size: 24px;
+    margin-top: 150px;
+}
