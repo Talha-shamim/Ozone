@@ -60,6 +60,9 @@ class SceneMain extends Phaser.Scene{
         this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
         this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
         // this.ammo.setVelocityY(-300);
+        if(this.point == 200 && this.activateBrahmos == false){
+            this.activateBrahmos = true;   
+        }
     }
     destroyLaser(laser, factory) {
         laser.disableBody(true, true);
