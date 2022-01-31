@@ -19,7 +19,7 @@ class SceneMain extends Phaser.Scene{
         //=============================add player==============================
         this.player = this.physics.add.image(500,566,"player");
         this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
-        this.ozone = this.physics.add.image(1000,-1300,"ozone").setImmovable().setScale(15).setDepth(-1);
+        this.ozone = this.physics.add.image(1000,-1200,"ozone").setImmovable().setScale(15).setDepth(-1);
         this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
         this.player.displayHeight = 60;
         this.player.displayWidth = 60
@@ -40,6 +40,7 @@ class SceneMain extends Phaser.Scene{
         worldLayer.setCollisionByProperty({ collide : true });
         this.physics.add.collider(this.player,worldLayer);
         this.physics.add.collider(this.player,this.factory);
+        this.physics.add.collider(this.player,this.factory2);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
         this.cursor = this.input.keyboard.createCursorKeys();
         this.input.on('pointerdown', this.shoot, this);
@@ -75,7 +76,6 @@ class SceneMain extends Phaser.Scene{
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
         this.player.setVelocityY(0);
-       
         
         
         if(this.cursor.right.isDown == true){
@@ -109,10 +109,10 @@ class SceneMain extends Phaser.Scene{
         if(object.y < 0) {
             this.score -= 10;
             if(this.score == 70){
-                this.ozone.y -= 25;
+                this.ozone.y -= 50;
             }
             if(this.score == 40){
-                this.ozone.y -= 25;
+                this.ozone.y -= 50;
             }
 
             if(this.score == 0){
