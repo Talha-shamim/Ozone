@@ -27,6 +27,7 @@ class SceneMain extends Phaser.Scene{
 
         this.score = 100;
         this.point = 0;
+        this.activateBrahmos = false;
         this.scoreText = this.add.text(30,10, 'Ozone Level : 100', {fontSize : '18px', fill : '#fff'});
         this.pointText = this.add.text(30,50, 'points : ' + this.point, {fontSize : '18px', fill : '#fff'});
 
