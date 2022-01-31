@@ -27,6 +27,7 @@ class SceneMain extends Phaser.Scene{
 
         this.score = 100;
         this.point = 0;
+        this.activateBrahmos = false;
         this.scoreText = this.add.text(30,10, 'Ozone Level : 100', {fontSize : '18px', fill : '#fff'});
         this.pointText = this.add.text(30,50, 'points : ' + this.point, {fontSize : '18px', fill : '#fff'});
 
@@ -60,6 +61,9 @@ class SceneMain extends Phaser.Scene{
         this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
         this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
         // this.ammo.setVelocityY(-300);
+        if(this.point == 200 && this.activateBrahmos == false){
+            this.activateBrahmos = true;   
+        }
     }
     destroyLaser(laser, factory) {
         laser.disableBody(true, true);
