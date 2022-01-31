@@ -57,7 +57,7 @@ class SceneMain extends Phaser.Scene{
 
         this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
         this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
-        this.physics.add.collider(this.laser, this.gas1, this.destroyGas, null, this);
+        this.physics.add.collider(this.laser, this.gas1, this.destroyGas1, null, this);
         this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
         this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
 
@@ -79,7 +79,15 @@ class SceneMain extends Phaser.Scene{
         gas.enableBody(true, this.factory.x, this.factory.y, true, true);
         SceneMain.setObjectVelocity(gas);
     }
-
+    destroyGas1(laser, gas) {
+        this.gdestroy.play();
+        gas.disableBody(true, true);
+        laser.disableBody(true, true);
+        this.point += 100;
+        this.pointText.setText('points : ' + this.point);
+        gas.enableBody(true, this.factory2.x, this.factory2.y, true, true);
+        SceneMain.setObjectVelocity(gas);
+    }
     update = function() {
 
         // ===================================movement of player==========================
