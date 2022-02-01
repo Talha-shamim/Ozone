@@ -1,3 +1,5 @@
+// import player from "./user/Player";
+
 function myGame(){
     let config = {
         type : Phaser.AUTO,
@@ -41,9 +43,10 @@ window.onload = function(){
     start_btn.addEventListener('click' , function(event) {
         event.preventDefault()
         const username = document.getElementById("username").value
-        console.log(username)
+
         if(isValidUsername(username)) {
             username_warning_msg.style.display = "none";
+            player.changePlayerDetails({username})
             initial_screen.remove();
             myGame();
         }

@@ -11,6 +11,7 @@
     <script src="js/main.js"></script>
     <script src="js/gameOver.js"></script>
     <script src="js/sceneMain.js"></script>
+    <script src="js/user/Player.js"></script>
     
 </head>
 <body>
@@ -19,12 +20,14 @@
     <div id="initial_screen">
         <img src="/assets/image/player.png" class="player_start"/>
 
-        <form id="username_form">
-            <label for="username">Please enter your username</label><br>
-            <input type="text" id="username" name="username" required><br>
-            <label id="username-warning-msg">*Please enter your username</label>
-        </form>
-        <button id="start_btn" type="submit" form="username_form">Start</button>
+        <div>
+            <form id="username_form">
+                <label for="username">Please enter your username</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label id="username-warning-msg">*Please enter your username</label>
+            </form>
+            <button id="start_btn" type="submit" form="username_form">Start</button>
+        </div>
 
         <div id="msg">
             <p id="guide1">Hi, this is your Ozone Wizard</p>
