@@ -18,7 +18,11 @@ function myGame(){
 }
 
 function isValidUsername(name) {
-    if(name === "" || name === undefined || name === null || name.includes(" "))
+    if(name === "" 
+    || name === undefined 
+    || name === null 
+    || name.includes(" ") 
+    || name.length > 15)
         return false
     return true
 }
@@ -42,7 +46,7 @@ window.onload = function(){
     // //start the game
     start_btn.addEventListener('click' , function(event) {
         event.preventDefault()
-        const username = document.getElementById("username").value
+        const username = document.getElementById("username-input").value
 
         if(isValidUsername(username)) {
             username_warning_msg.style.display = "none";
