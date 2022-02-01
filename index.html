@@ -18,7 +18,14 @@
 
     <div id="initial_screen">
         <img src="/assets/image/player.png" class="player_start"/>
-        <button id="start_btn">Start</button>
+
+        <form id="username_form">
+            <label for="username">Please enter your username</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label id="username-warning-msg">*Please enter your username</label>
+        </form>
+        <button id="start_btn" type="submit" form="username_form">Start</button>
+
         <div id="msg">
             <p id="guide1">Hi, this is your Ozone Wizard</p>
             <p id="guide2">Click next to know game rules</p>

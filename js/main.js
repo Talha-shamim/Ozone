@@ -15,6 +15,11 @@ function myGame(){
     let game = new Phaser.Game(config);
 }
 
+function isValidUsername(name) {
+    if(name === "" || name === undefined || name === null || name.includes(" "))
+        return false
+    return true
+}
 
 window.onload = function(){
     let start_btn = document.getElementById("start_btn")
@@ -25,14 +30,26 @@ window.onload = function(){
     let wizard = document.getElementById("wizard");
     let arrow = document.getElementById("arrow");
     let startGame = document.getElementById("startGame");
-    
+
+    let username_warning_msg = document.getElementById("username-warning-msg");
+    username_warning_msg.style.display = "none";
+
     // // call for init    
     init();
 
     // //start the game
-    start_btn.addEventListener('click' , function(){
-        initial_screen.remove();
-        myGame();
+    start_btn.addEventListener('click' , function(event) {
+        event.preventDefault()
+        const username = document.getElementById("username").value
+        console.log(username)
+        if(isValidUsername(username)) {
+            username_warning_msg.style.display = "none";
+            initial_screen.remove();
+            myGame();
+        }
+        else {
+            username_warning_msg.style.display = "block";
+        }
     })
 
     let one = true;
