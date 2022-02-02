@@ -58,7 +58,7 @@ class SceneMain extends Phaser.Scene{
 
         // this.BKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
     }
-    
+
     shoot()
     {
         if(this.activateBrahmos){
