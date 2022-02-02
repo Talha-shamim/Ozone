@@ -204,7 +204,7 @@ class SceneMain extends Phaser.Scene{
         if(object.y < 0) {
             this.score -= 10;
             if (this.score >= 70) {
-                this.cameras.main.setBackgroundColor('#66ff66');
+                this.cameras.main.setBackgroundColor('#E0FFFF');
                 
             }
             else if (this.score >= 40) {
