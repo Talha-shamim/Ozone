@@ -23,7 +23,7 @@ class SceneMain extends Phaser.Scene{
         this.ozone = this.physics.add.image(1000,-1200,"ozone").setImmovable().setScale(15).setDepth(-1);
         this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
         this.player.displayHeight = 60;
-        this.player.displayWidth = 60
+        this.player.displayWidth = 60;
         this.gdestroy = this.sound.add('gdestroy');
 
         this.score = 100;
@@ -126,8 +126,10 @@ class SceneMain extends Phaser.Scene{
    checkRepositionForObject(object,score,scoreText) {
         if(object.y < 0) {
             this.score -= 10;
+                
             if(this.score == 70){
                 this.ozone.y -= 50;
+                
             }
             if(this.score == 40){
                 this.ozone.y -= 50;
