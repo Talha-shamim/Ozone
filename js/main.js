@@ -5,7 +5,7 @@ function myGame(){
         type : Phaser.AUTO,
         width : window.innerWidth,
         height : window.innerHeight,
-        backgroundColor : 0x96DED1,
+        backgroundColor: "#228B22",
         physics : {
             default : 'arcade',
         },

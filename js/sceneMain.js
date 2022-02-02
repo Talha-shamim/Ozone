@@ -126,6 +126,37 @@ class SceneMain extends Phaser.Scene{
    checkRepositionForObject(object,score,scoreText) {
         if(object.y < 0) {
             this.score -= 10;
+            if (this.score == 90) {
+                this.cameras.main.setBackgroundColor('#90EE90');
+            }
+            if (this.score == 80) {
+                this.cameras.main.setBackgroundColor('#ADDFAD');
+            }
+            if (this.score == 70) {
+                this.cameras.main.setBackgroundColor('#EAFAB6');
+            }
+            if (this.score == 60) {
+                this.cameras.main.setBackgroundColor('#D0D076');
+            }
+            if (this.score == 50) {
+                this.cameras.main.setBackgroundColor('#FAC000');
+            }
+            if (this.score == 40) {
+                this.cameras.main.setBackgroundColor('#FF7500');
+                
+            }
+            if (this.score == 30) {
+                this.cameras.main.setBackgroundColor('#FC6400');
+            }
+            if (this.score == 20) {
+                this.cameras.main.setBackgroundColor('#c32a38');
+            }
+            if (this.score == 10) {
+                this.cameras.main.setBackgroundColor('#075302');
+            }
+            if (this.score == 0) {
+                this.cameras.main.setBackgroundColor('#B62203');
+            }
                 
             if(this.score == 70){
                 this.ozone.y -= 50;
