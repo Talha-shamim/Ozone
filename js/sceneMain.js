@@ -16,6 +16,7 @@ class SceneMain extends Phaser.Scene{
         this.load.image("back2", '../assets/image/back2.webp');
         this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
         this.load.audio('gdestroy', '../assets/audio/gasdestroy.wav');
+       
     }
     
     create = function() {
