@@ -92,7 +92,7 @@ class SceneMain extends Phaser.Scene{
                 this.physics.add.collider(this.laser, this.factory2, this.destroyFactory2, null, this);
             }
 
-            if(this.point == 200 && this.activateBrahmos == false){
+            if(this.point == 2000 && this.activateBrahmos == false){
                 this.activateBrahmos = true;
                 this.brahmosText = this.add.text(500,10, 'Bombs Activated', {fontSize : '28px', fill : '#66ff66', fontFamily: 'Architectural',});
                 
@@ -195,11 +195,15 @@ class SceneMain extends Phaser.Scene{
     }
 
    checkRepositionForObject(object,score,scoreText) {
-        
+        if(this.score < 70)this.tree.disableBody(true,true);
+        if(this.score < 40)this.tree2.disableBody(true,true);
+        if(this.score < 20)this.tree3.disableBody(true,true);
+
         if(object.y < 0) {
             this.score -= 10;
             if (this.score >= 70) {
                 this.cameras.main.setBackgroundColor('#66ff66');
+                
             }
             else if (this.score >= 40) {
                 this.cameras.main.setBackgroundColor('#ccff33');
@@ -230,6 +234,10 @@ class SceneMain extends Phaser.Scene{
     }
     
     checkRepositionForObject1(object, score, scoreText) {
+        if(this.ozone.y == 70){
+            this.tree.disableBody(true,true);
+        }
+
         if (object.y < 0) {
             this.score -= 10;
             if (this.score == 70) {
