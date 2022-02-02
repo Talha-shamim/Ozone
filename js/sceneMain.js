@@ -62,7 +62,7 @@ class SceneMain extends Phaser.Scene{
     shoot()
     {
         if(this.activateBrahmos){
-            this.laser = this.physics.add.image(this.player.x, this.player.y, 'brahmos').setScale(0.1).setOrigin(0, 0.5);
+            this.laser = this.physics.add.image(this.player.x, this.player.y, 'brahmos').setScale(0.15).setOrigin(0, 0.5);
 
             this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
             this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
