@@ -11,6 +11,7 @@
     <script src="js/main.js"></script>
     <script src="js/gameOver.js"></script>
     <script src="js/sceneMain.js"></script>
+    <script src="js/user/Player.js"></script>
     
 </head>
 <body>
@@ -18,21 +19,31 @@
 
     <div id="initial_screen">
         <img src="/assets/image/player.png" class="player_start"/>
-        <button id="start_btn">Start</button>
+
+        <div id="user-form">
+            <form id="username_form">
+                <label for="username" id="username-label">Please enter your username</label>
+                <input type="text" id="username-input" name="username" required>
+                <label id="username-warning-msg">*Please enter a username, make sure to have no spaces and less than 16 characters</label>
+            </form>
+            <button id="start_btn" type="submit" form="username_form">Start</button>
+        </div>
+
         <div id="msg">
-            <p id="guide1">Hi, this is your Ozone Wizard</p>
-            <p id="guide2">Click next to know game rules</p>
-            <div id="rules">
+            <p id="guide1" class="wizard-rules">Hi, this is your Ozone Wizard</p>
+            <p id="guide2" class="wizard-rules">Click next to know game rules</p>
+            <div id="rules" class="wizard-rules">
                 <p>The game has industries that emit pollutant gases</p>
                 <p>player will be provided a gun to shoot the gases which willhave preloaded bullets made of something like chemical scrubbers</p>
                 <p>Whenever the bullet hits the gas, the player will earn 100 points for bursting the gas bubble</p>
                 <p>As the point increases, the ozone layer will also decrease.</p>
             </div>
-            <p id="startGame">You are ready to start!!!</p>
+            <p id="startGame" class="wizard-rules">You are ready to start!!!</p>
             <img id="wizard" src="./assets/image/wizard.png"/>
-            <img id="arrow" src="./assets/image/arrow.png"/>
+            <!-- <img id="arrow" src="./assets/image/arrow.png"/> -->
+            <img id="arrow" src="next_arrow.svg"></svg>
+        </div>
 
-        </div>  
         <audio autoplay loop >
             <source src="assets/audio/starting.mp3" type="audio/mp3" id="audio"/>
         </audio>
