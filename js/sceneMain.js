@@ -149,7 +149,7 @@ class SceneMain extends Phaser.Scene{
                 this.cameras.main.setBackgroundColor('#FC6400');
             }
             if (this.score == 20) {
-                this.cameras.main.setBackgroundColor('#c32a38');
+                this.cameras.main.setBackgroundColor('#FC6402');
             }
             if (this.score == 10) {
                 this.cameras.main.setBackgroundColor('#075302');
