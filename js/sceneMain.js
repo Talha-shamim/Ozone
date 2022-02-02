@@ -157,6 +157,7 @@ class SceneMain extends Phaser.Scene{
             if (this.score == 0) {
                 this.cameras.main.setBackgroundColor('#B62203');
             }
+
                 
             if(this.score == 70){
                 this.ozone.y -= 50;
