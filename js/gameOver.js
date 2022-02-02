@@ -18,11 +18,11 @@ class GameOver extends Phaser.Scene{
         this.player = this.physics.add.image(300,266,"player").setScale(0.7);
 
         // Use player.state.username to get player's username
-        this.gameOverText = this.add.text(550,266, `${player.state.username} Game over`, {fontSize : '72px', fill : '#fff'})
+        this.gameOverText = this.add.text(420,266, `${player.state.username}, Game over 😥`, {fontSize : '72px', fill : '#fff'})
 
-        this.score = this.add.text(630,330, 'Your score '+ this.point, {fontSize : '30px', fill : '#fff'})
+        this.score = this.add.text(630,350, 'Your score '+ this.point, {fontSize : '30px', fill : '#fff'})
 
-        this.startBtn = this.add.sprite(750, 400, 'restart').setInteractive().setScale(0.4);
+        this.startBtn = this.add.sprite(750, 450, 'restart').setInteractive().setScale(0.4);
 
         this.startBtn.on('pointerdown', function(){
             location.reload();

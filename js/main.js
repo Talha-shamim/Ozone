@@ -5,13 +5,13 @@ function myGame(){
         type : Phaser.AUTO,
         width : window.innerWidth,
         height : window.innerHeight,
-        backgroundColor: "#228B22",
+        backgroundColor: "#66ff66",
         physics : {
             default : 'arcade',
         },
         parent : 'phaser-game',
         pixelArt : true,
-        scene : [SceneMain, GameOver],
+        scene : [SceneMain, GameOver, Winning],
     }
 
     let game = new Phaser.Game(config);

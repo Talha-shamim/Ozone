@@ -7,6 +7,7 @@ class SceneMain extends Phaser.Scene{
         this.load.image("player",'../assets/image/player.png');
         this.load.image("tiles",'../assets/image/ozone.png');
         this.load.image("laser",'../assets/image/laser.png');  
+        this.load.image("brahmos",'../assets/image/brahmos.png');  
         this.load.image("factory", '../assets/image/factory.png');
         this.load.image("ozone", '../assets/image/ozone.jpg');
         this.load.image("ozone2", '../assets/image/ozone2.jpg');
@@ -28,6 +29,7 @@ class SceneMain extends Phaser.Scene{
 
         this.score = 100;
         this.point = 0;
+        this.count = 0;
         this.activateBrahmos = false;
         this.scoreText = this.add.text(30,10, 'Ozone Level : 100', {fontSize : '18px', fill : '#fff'});
         this.pointText = this.add.text(30,50, 'points : ' + this.point, {fontSize : '18px', fill : '#fff'});
@@ -45,30 +47,74 @@ class SceneMain extends Phaser.Scene{
         this.physics.add.collider(this.player,this.factory2);
         // this.cameras.main.startFollow(this.player, true, 0.8, 0.8);
         this.cursor = this.input.keyboard.createCursorKeys();
+        
         this.input.on('pointerdown', this.shoot, this);
+        
         this.gas = this.physics.add.image(this.factory.x, this.factory.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
         this.gas1=this.physics.add.image(this.factory2.x, this.factory2.y, 'gas').setScale(0.1).setOrigin(0, 0.5);
+        
         SceneMain.setObjectVelocity(this.gas);
         SceneMain.setObjectVelocity(this.gas1);
-       
+
+        // this.BKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
     }
+    
     shoot()
     {
-        this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.2).setOrigin(0, 0.5);
+        if(this.activateBrahmos){
+            this.laser = this.physics.add.image(this.player.x, this.player.y, 'brahmos').setScale(0.2).setOrigin(0, 0.5);
 
-        this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
-        this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
-        this.physics.add.collider(this.laser, this.gas1, this.destroyGas1, null, this);
-        this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
-        this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
-
-        if(this.point == 200 && this.activateBrahmos == false){
-            this.activateBrahmos = true;   
+            this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
+            this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
+            this.physics.add.collider(this.laser, this.gas1, this.destroyGas1, null, this);
+            if(this.activateBrahmos == false){
+                this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
+                this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
+            }
+            else{
+                this.physics.add.collider(this.laser, this.factory, this.destroyFactory, null, this);
+                this.physics.add.collider(this.laser, this.factory2, this.destroyFactory, null, this);
+            }
         }
-        // this.ammo.setVelocityY(-300);
+        else{
+            this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.2).setOrigin(0, 0.5);
+
+            this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
+            this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
+            this.physics.add.collider(this.laser, this.gas1, this.destroyGas1, null, this);
+            if(this.activateBrahmos == false){
+                this.physics.add.collider(this.laser, this.factory, this.destroyLaser, null, this);
+                this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
+            }
+            else{
+                this.physics.add.collider(this.laser, this.factory, this.destroyFactory, null, this);
+                this.physics.add.collider(this.laser, this.factory2, this.destroyFactory, null, this);
+            }
+
+            if(this.point == 200 && this.activateBrahmos == false){
+                this.activateBrahmos = true;
+                this.brahmosText = this.add.text(500,10, 'Brahmos Activated', {fontSize : '28px', fill : '#66ff66', fontFamily: 'Architectural',});
+                
+                this.time.addEvent({ delay: 1500, callback: this.brahmosTextRemove, callbackScope: this, loop: false });
+            }
+        }
     }
+
+    brahmosTextRemove(){
+        this.brahmosText.destroy();
+    }
+
     destroyLaser(laser, factory) {
         laser.disableBody(true, true);
+    }
+
+    destroyFactory(laser, factory) {
+        factory.disableBody(true, true);
+        laser.disableBody(true, true);
+        this.count++;
+        if(this.count == 2){
+            this.scene.start('winning', {point : this.point});
+        }
     }
 
     destroyGas(laser, gas) {
@@ -89,6 +135,7 @@ class SceneMain extends Phaser.Scene{
         gas.enableBody(true, this.factory2.x, this.factory2.y, true, true);
         SceneMain.setObjectVelocity(gas);
     }
+
     update = function() {
         // ===================================movement of player==========================
         this.player.setVelocityX(0);
@@ -104,7 +151,12 @@ class SceneMain extends Phaser.Scene{
         }
         this.checkRepositionForObject(this.gas, this.score, this.scoreText);
         this.checkRepositionForObject1(this.gas1, this.score, this.scoreText);
-        
+    }
+
+
+    launchBrahmos(){
+        this.point += 1000;
+        this.pointText.setText('points : ' + this.point);
     }
     
     
@@ -126,37 +178,19 @@ class SceneMain extends Phaser.Scene{
    checkRepositionForObject(object,score,scoreText) {
         if(object.y < 0) {
             this.score -= 10;
-            if (this.score == 90) {
-                this.cameras.main.setBackgroundColor('#90EE90');
+            if (this.score >= 70) {
+                this.cameras.main.setBackgroundColor('#66ff66');
             }
-            if (this.score == 80) {
-                this.cameras.main.setBackgroundColor('#ADDFAD');
+            else if (this.score >= 40) {
+                this.cameras.main.setBackgroundColor('#ccff33');
             }
-            if (this.score == 70) {
-                this.cameras.main.setBackgroundColor('#EAFAB6');
+            else if (this.score >= 20) {
+                this.cameras.main.setBackgroundColor('#cc9900');
             }
-            if (this.score == 60) {
-                this.cameras.main.setBackgroundColor('#D0D076');
+            else{
+                this.cameras.main.setBackgroundColor('#999966');
             }
-            if (this.score == 50) {
-                this.cameras.main.setBackgroundColor('#FAC000');
-            }
-            if (this.score == 40) {
-                this.cameras.main.setBackgroundColor('#FF7500');
-                
-            }
-            if (this.score == 30) {
-                this.cameras.main.setBackgroundColor('#FC6400');
-            }
-            if (this.score == 20) {
-                this.cameras.main.setBackgroundColor('#FC6402');
-            }
-            if (this.score == 10) {
-                this.cameras.main.setBackgroundColor('#075302');
-            }
-            if (this.score == 0) {
-                this.cameras.main.setBackgroundColor('#B62203');
-            }
+
                 
             if(this.score == 70){
                 this.ozone.y -= 50;
@@ -174,6 +208,7 @@ class SceneMain extends Phaser.Scene{
             object.x = this.factory.x;
         }
     }
+    
     checkRepositionForObject1(object, score, scoreText) {
         if (object.y < 0) {
             this.score -= 10;
@@ -191,8 +226,5 @@ class SceneMain extends Phaser.Scene{
             object.x = this.factory2.x;
         }
     }
-
-    // reset position of the object
-     
 }
 
