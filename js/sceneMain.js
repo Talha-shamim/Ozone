@@ -11,6 +11,8 @@ class SceneMain extends Phaser.Scene{
         this.load.image("factory", '../assets/image/factory.png');
         this.load.image("ozone", '../assets/image/ozone.jpg');
         this.load.image("tree", '../assets/image/tree.png');
+        this.load.image("tree2", '../assets/image/tree2.png');
+        this.load.image("tree3", '../assets/image/tree3.png');
         this.load.image("ozone2", '../assets/image/ozone2.jpg');
         this.load.image("gas", '../assets/image/gases.png');
         this.load.image("back2", '../assets/image/back2.webp');
@@ -24,8 +26,8 @@ class SceneMain extends Phaser.Scene{
         this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
         this.ozone = this.physics.add.image(1000,-1200,"ozone").setImmovable().setScale(15).setDepth(-1);
         this.tree = this.physics.add.image(40,500,"tree").setImmovable().setScale(1).setDepth(-1);
-        this.tree2 = this.physics.add.image(700,500,"tree").setImmovable().setScale(1).setDepth(-1);
-        this.tree3 = this.physics.add.image(1300,500,"tree").setImmovable().setScale(1).setDepth(-1);
+        this.tree2 = this.physics.add.image(700,460,"tree2").setImmovable().setScale(0.6).setDepth(-1);
+        this.tree3 = this.physics.add.image(1300,510,"tree3").setImmovable().setScale(1).setDepth(-1);
         this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
         this.player.displayHeight = 60;
         this.player.displayWidth = 60;
