@@ -73,12 +73,12 @@ class SceneMain extends Phaser.Scene{
                 this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
             }
             else{
-                this.physics.add.collider(this.laser, this.factory, this.destroyFactory, null, this);
-                this.physics.add.collider(this.laser, this.factory2, this.destroyFactory, null, this);
+                this.physics.add.collider(this.laser, this.factory, this.destroyFactory1, null, this);
+                this.physics.add.collider(this.laser, this.factory2, this.destroyFactory1, null, this);
             }
         }
         else{
-            this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.2).setOrigin(0, 0.5);
+            this.laser = this.physics.add.image(this.player.x, this.player.y, 'laser').setScale(0.1).setOrigin(0, 0.5);
 
             this.physics.moveTo(this.laser, this.game.input.mousePointer.x, this.game.input.mousePointer.y, 600);
             this.physics.add.collider(this.laser, this.gas, this.destroyGas, null, this);
@@ -88,8 +88,8 @@ class SceneMain extends Phaser.Scene{
                 this.physics.add.collider(this.laser, this.factory2, this.destroyLaser, null, this);
             }
             else{
-                this.physics.add.collider(this.laser, this.factory, this.destroyFactory, null, this);
-                this.physics.add.collider(this.laser, this.factory2, this.destroyFactory, null, this);
+                this.physics.add.collider(this.laser, this.factory, this.destroyFactory1, null, this);
+                this.physics.add.collider(this.laser, this.factory2, this.destroyFactory2, null, this);
             }
 
             if(this.point == 200 && this.activateBrahmos == false){
@@ -109,12 +109,29 @@ class SceneMain extends Phaser.Scene{
         laser.disableBody(true, true);
     }
 
-    destroyFactory(laser, factory) {
+    destroyFactory1(laser, factory) {
         factory.disableBody(true, true);
         laser.disableBody(true, true);
+        this.gdestroy.play();
+        if (this.activateBrahmos == true) {
+            this.gas1.disableBody(true, true);
+        };
+            
         this.count++;
         if(this.count == 2){
             this.scene.start('winning', {point : this.point});
+        }
+    }
+    destroyFactory2(laser, factory) {
+        factory.disableBody(true, true);
+        laser.disableBody(true, true);
+        this.gdestroy.play();
+        if (this.activateBrahmos == true) {
+            this.gas.disableBody(true, true);
+        }
+        this.count++;
+        if (this.count == 2) {
+            this.scene.start('winning', { point: this.point });
         }
     }
 
