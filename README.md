@@ -24,5 +24,6 @@ Player will be provided a gun to shoot the gases which will have preloaded bulle
 Whenever the bullet hits the gas, the player will earn 100 points for bursting the gas bubble.
 As the point increases, the ozone layer will also decrease when ozone crosses the layer.
 At the end of the game when ozone layer comes to 0, the player will get to know their score.
+when user will score 200 point he will be give a special power as brahmos.
 
 
