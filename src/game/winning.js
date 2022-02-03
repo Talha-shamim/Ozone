@@ -8,9 +8,9 @@ class Winning extends Phaser.Scene{
     }
 
     preload = function() {
-        this.load.image("player",'../assets/image/player.png');
-        this.load.image("restart", '../assets/image/restart.png');
-        this.load.image("back", '../assets/image/gameoverbg.webp');
+        this.load.image("player",'../../assets/image/player.png');
+        this.load.image("restart", '../../assets/image/restart.png');
+        this.load.image("back", '../../assets/image/gameoverbg.webp');
     }
     
     create = function() {

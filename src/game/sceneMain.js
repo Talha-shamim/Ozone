@@ -4,30 +4,30 @@ class SceneMain extends Phaser.Scene{
     }
 
     preload = function() {
-        // this.load.image("player",'../assets/image/player.png');
+        // this.load.image("player",'../../assets/image/player.png');
         this.load.spritesheet("dude", 
-			"../assets/image/dude.png",
+			"../../assets/image/dude.png",
 			{ frameWidth: 32, frameHeight: 48 }
 		)
-        this.load.image("tiles",'../assets/image/ozone.png');
-        this.load.image("laser",'../assets/image/laser.png');  
-        this.load.image("brahmos",'../assets/image/brahmos.png');  
-        this.load.image("factory", '../assets/image/factory.png');
-        this.load.image("ozone", '../assets/image/ozone.jpg');
-        this.load.image("tree", '../assets/image/tree.png');
-        this.load.image("tree2", '../assets/image/tree2.png');
-        this.load.image("tree3", '../assets/image/tree3.png');
-        this.load.image("ozone2", '../assets/image/ozone2.jpg');
-        this.load.image("gas", '../assets/image/gases.png');
-        this.load.image("back2", '../assets/image/back2.webp');
-        this.load.tilemapTiledJSON('map', '../assets/maps/ozoneMap2.json');
-        this.load.audio('gdestroy', '../assets/audio/gasdestroy.wav');
+        this.load.image("tiles",'../../assets/image/ozone.png');
+        this.load.image("laser",'../../assets/image/laser.png');  
+        this.load.image("brahmos",'../../assets/image/brahmos.png');  
+        this.load.image("factory", '../../assets/image/factory.png');
+        this.load.image("ozone", '../../assets/image/ozone.jpg');
+        this.load.image("tree", '../../assets/image/tree.png');
+        this.load.image("tree2", '../../assets/image/tree2.png');
+        this.load.image("tree3", '../../assets/image/tree3.png');
+        this.load.image("ozone2", '../../assets/image/ozone2.jpg');
+        this.load.image("gas", '../../assets/image/gases.png');
+        this.load.image("back2", '../../assets/image/back2.webp');
+        this.load.tilemapTiledJSON('map', '../../assets/maps/ozoneMap2.json');
+        this.load.audio('gdestroy', '../../assets/audio/gasdestroy.wav');
        
     }
     
     create = function() {
         // Cursor
-        this.input.setDefaultCursor('url(../assets/image/aim_assistant.png), pointer');
+        this.input.setDefaultCursor('url(../../assets/image/aim_assistant.png), pointer');
 
         //=============================add player==============================
         // this.player = this.physics.add.image(500,566,"player");

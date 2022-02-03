@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <title>Ozone</title>
     <link rel="icon" href="./assets/image/logo.png" type="image/png">
-    <link rel="stylesheet" href="../index.css">
-    <script src="js/phaser.min.js">  
+    <link rel="stylesheet" href="index.css">
+    <script src="src/game/phaser.min.js">  
     </script>
-    <script src="js/init.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/gameOver.js"></script>
-    <script src="js/winning.js"></script>
-    <script src="js/sceneMain.js"></script>
-    <script src="js/user/Player.js"></script>
+    <script src="src/game/init.js"></script>
+    <script src="src/game/main.js"></script>
+    <script src="src/game/gameOver.js"></script>
+    <script src="src/game/winning.js"></script>
+    <script src="src/game/sceneMain.js"></script>
+    <script src="src/user/Player.js"></script>
     
 </head>
 <body>
     <div id="myCanvas"></div>
 
     <div id="initial_screen">
-        <img src="/assets/image/player.png" class="player_start"/>
+        <img src="./assets/image/player.png" class="player_start"/>
 
         <div id="user-form">
             <form id="username_form">
@@ -46,9 +46,9 @@
             <img id="arrow" src="next_arrow.svg"></svg>
         </div>
 
-        <!-- <audio autoplay loop >
+        <audio autoplay loop >
             <source src="assets/audio/starting.mp3" type="audio/mp3" id="audio"/>
-        </audio> -->
+        </audio>
     </div>
 
     <div id="phaser-game"></div>
