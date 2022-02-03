@@ -22,6 +22,9 @@ class SceneMain extends Phaser.Scene{
     }
     
     create = function() {
+        // Cursor
+        this.input.setDefaultCursor('url(../assets/image/star.png), pointer');
+
         //=============================add player==============================
         this.player = this.physics.add.image(500,566,"player");
         this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
@@ -95,7 +98,7 @@ class SceneMain extends Phaser.Scene{
                 this.physics.add.collider(this.laser, this.factory2, this.destroyFactory2, null, this);
             }
 
-            if(this.point == 200 && this.activateBrahmos == false){
+            if(this.point == 2500 && this.activateBrahmos == false){
                 this.activateBrahmos = true;
                 this.brahmosText = this.add.text(500,10, 'Bombs Activated', {fontSize : '28px', fill : '#66ff66', fontFamily: 'Architectural',});
                 
