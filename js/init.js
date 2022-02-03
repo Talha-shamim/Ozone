@@ -15,6 +15,6 @@ function init(){
     // remove the animation
     setTimeout(() => {
         canvas.remove();
-    },50)
+    }, 2950)
     
 }

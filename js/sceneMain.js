@@ -95,7 +95,7 @@ class SceneMain extends Phaser.Scene{
                 this.physics.add.collider(this.laser, this.factory2, this.destroyFactory2, null, this);
             }
 
-            if(this.point == 2500 && this.activateBrahmos == false){
+            if(this.point == 200 && this.activateBrahmos == false){
                 this.activateBrahmos = true;
                 this.brahmosText = this.add.text(500,10, 'Bombs Activated', {fontSize : '28px', fill : '#66ff66', fontFamily: 'Architectural',});
                 

@@ -50,7 +50,7 @@ window.onload = function(){
 
         if(isValidUsername(username)) {
             username_warning_msg.style.display = "none";
-            player.changePlayerDetails({username})
+            user_player.changePlayerDetails({username})
             initial_screen.remove();
             myGame();
         }

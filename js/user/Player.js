@@ -2,7 +2,7 @@ function changePlayerDetails(obj) {
     this.state = {...this.state, ...obj}
 }
 
-let player = {
+let user_player = {
     state: {
         username: "Player"
     },
