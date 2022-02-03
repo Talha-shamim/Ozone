@@ -4,7 +4,11 @@ class SceneMain extends Phaser.Scene{
     }
 
     preload = function() {
-        this.load.image("player",'../assets/image/player.png');
+        // this.load.image("player",'../assets/image/player.png');
+        this.load.spritesheet("dude", 
+			"../assets/image/dude.png",
+			{ frameWidth: 32, frameHeight: 48 }
+		)
         this.load.image("tiles",'../assets/image/ozone.png');
         this.load.image("laser",'../assets/image/laser.png');  
         this.load.image("brahmos",'../assets/image/brahmos.png');  
@@ -26,15 +30,18 @@ class SceneMain extends Phaser.Scene{
         this.input.setDefaultCursor('url(../assets/image/star.png), pointer');
 
         //=============================add player==============================
-        this.player = this.physics.add.image(500,566,"player");
+        // this.player = this.physics.add.image(500,566,"player");
+        this.player = this.physics.add.sprite(500, 566, "dude");
+        this.addPlayerAnimations();
+        
         this.factory = this.physics.add.image(1000,500,"factory").setImmovable().setScale(0.7);
         this.ozone = this.physics.add.image(1000,-1200,"ozone").setImmovable().setScale(15).setDepth(-1);
         this.tree = this.physics.add.image(40,500,"tree").setImmovable().setScale(1).setDepth(-1);
         this.tree2 = this.physics.add.image(700,460,"tree2").setImmovable().setScale(0.6).setDepth(-1);
         this.tree3 = this.physics.add.image(1300,510,"tree3").setImmovable().setScale(1).setDepth(-1);
         this.factory2 = this.physics.add.image(200,540,"factory").setImmovable().setScale(0.5);
-        this.player.displayHeight = 60;
-        this.player.displayWidth = 60;
+        // this.player.displayHeight = 60;
+        // this.player.displayWidth = 60;
         this.gdestroy = this.sound.add('gdestroy');
 
         this.score = 100;
@@ -65,6 +72,26 @@ class SceneMain extends Phaser.Scene{
         
         SceneMain.setObjectVelocity(this.gas);
         SceneMain.setObjectVelocity(this.gas1);
+    }
+
+    addPlayerAnimations() {
+        this.anims.create({
+			key: 'left',
+			frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 3 }),
+			frameRate: 10,
+			repeat: -1
+		});
+		this.anims.create({
+			key: 'turn',
+			frames: [ { key: "dude", frame: 4 } ],
+			frameRate: 20
+		});
+		this.anims.create({
+			key: 'right',
+			frames: this.anims.generateFrameNumbers("dude", { start: 5, end: 8 }),
+			frameRate: 10,
+			repeat: -1
+		});
     }
 
     shoot(){
@@ -162,16 +189,21 @@ class SceneMain extends Phaser.Scene{
 
     update = function() {
         // ===================================movement of player==========================
-        this.player.setVelocityX(0);
         this.player.setVelocityY(0);
-        
+        // this.player.anims.play('turn')
         
         if(this.cursor.right.isDown == true){
             this.player.setVelocityX(500);
+            this.player.anims.play('right', true)
         }
 
-        if(this.cursor.left.isDown == true){
+        else if(this.cursor.left.isDown == true){
             this.player.setVelocityX(-500);
+            this.player.anims.play('left', true)
+        }
+        else {
+            this.player.setVelocityX(0);
+            this.player.anims.play('turn')
         }
 
         this.checkRepositionForObject(this.gas, this.score, this.scoreText);
