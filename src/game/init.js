@@ -1,3 +1,4 @@
+// Run initial animation gif when websites load
 function init(){
     // starting animation
     var canvas = document.getElementById("myCanvas");

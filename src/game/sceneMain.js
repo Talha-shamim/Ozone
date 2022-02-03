@@ -74,6 +74,7 @@ class SceneMain extends Phaser.Scene{
         SceneMain.setObjectVelocity(this.gas1);
     }
 
+    // Add left and right animation to the player
     addPlayerAnimations() {
         this.anims.create({
 			key: 'left',
@@ -94,7 +95,8 @@ class SceneMain extends Phaser.Scene{
 		});
     }
 
-    shoot(){
+    // Shoot laser or brahmos when mouse is clicked
+    shoot() {
         if(this.activateBrahmos){
             this.laser = this.physics.add.image(this.player.x, this.player.y, 'brahmos').setScale(0.15).setOrigin(0, 0.5);
 
@@ -134,14 +136,17 @@ class SceneMain extends Phaser.Scene{
         }
     }
 
+    // Remove Brahmos text
     brahmosTextRemove(){
         this.brahmosText.destroy();
     }
 
+    // Destroy laser when it collides with a factory
     destroyLaser(laser, factory) {
         laser.disableBody(true, true);
     }
 
+    // Destroy factory1 when Brahmos hits it
     destroyFactory1(laser, factory) {
         factory.disableBody(true, true);
         laser.disableBody(true, true);
@@ -155,6 +160,8 @@ class SceneMain extends Phaser.Scene{
             this.scene.start('winning', {point : this.point});
         }
     }
+
+    // Destroy factory2 when Brahmos hits it
     destroyFactory2(laser, factory) {
         factory.disableBody(true, true);
         laser.disableBody(true, true);
@@ -168,6 +175,7 @@ class SceneMain extends Phaser.Scene{
         }
     }
 
+    // Destroy gas when it collides with a laser
     destroyGas(laser, gas) {
         this.gdestroy.play();
         gas.disableBody(true, true);
@@ -177,6 +185,8 @@ class SceneMain extends Phaser.Scene{
         gas.enableBody(true, this.factory.x, this.factory.y, true, true);
         SceneMain.setObjectVelocity(gas);
     }
+
+    // Destroy gas1 when it collides with a laser
     destroyGas1(laser, gas) {
         this.gdestroy.play();
         gas.disableBody(true, true);
@@ -210,29 +220,28 @@ class SceneMain extends Phaser.Scene{
         this.checkRepositionForObject1(this.gas1, this.score, this.scoreText);
     }
 
-
+    // Launch Brahmos
     launchBrahmos(){
         this.point += 1000;
         this.pointText.setText('points : ' + this.point);
     }
-    
-    
 
-     // give random velocity to the group object
-     static setObjectsVelocity(objects) {
-         objects.children.iterate((objcet) => {
-             SceneMain.setObjectVelocity(objcet);
-         });
-     }
+    // give random velocity to the group object
+    static setObjectsVelocity(objects) {
+        objects.children.iterate((objcet) => {
+            SceneMain.setObjectVelocity(objcet);
+        });
+    }
 
-     // give random velocity to singal object
-     static setObjectVelocity(object) {
+    // give random velocity to singal object
+    static setObjectVelocity(object) {
         const xVel = Phaser.Math.Between(-100, 100);
         const yVel = Phaser.Math.Between(-150, -200);
         object.setVelocity(xVel, yVel);
     }
 
-   checkRepositionForObject(object,score,scoreText) {
+    // Check for new position of gas 
+    checkRepositionForObject(object,score,scoreText) {
         if(this.score < 70)this.tree.disableBody(true,true);
         if(this.score < 40)this.tree2.disableBody(true,true);
         if(this.score < 20)this.tree3.disableBody(true,true);
@@ -271,6 +280,7 @@ class SceneMain extends Phaser.Scene{
         }
     }
     
+    // Check for new position of gas1
     checkRepositionForObject1(object, score, scoreText) {
         if(this.ozone.y == 70){
             this.tree.disableBody(true,true);

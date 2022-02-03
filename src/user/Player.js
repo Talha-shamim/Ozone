@@ -1,3 +1,4 @@
+// Change player details
 function changePlayerDetails(obj) {
     this.state = {...this.state, ...obj}
 }

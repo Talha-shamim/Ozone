@@ -1,5 +1,4 @@
-// import player from "./user/Player";
-
+// Set game configuration settings and create game object 
 function myGame(){
     let config = {
         type : Phaser.AUTO,
@@ -17,6 +16,7 @@ function myGame(){
     let game = new Phaser.Game(config);
 }
 
+// Check whether a username is a valid username or not
 function isValidUsername(name) {
     if(name === "" 
     || name === undefined 
@@ -27,6 +27,7 @@ function isValidUsername(name) {
     return true
 }
 
+// Load title screen
 window.onload = function(){
     let start_btn = document.getElementById("start_btn")
     let initial_screen = document.getElementById("initial_screen")
