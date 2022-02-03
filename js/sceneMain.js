@@ -27,7 +27,7 @@ class SceneMain extends Phaser.Scene{
     
     create = function() {
         // Cursor
-        this.input.setDefaultCursor('url(../assets/image/star.png), pointer');
+        this.input.setDefaultCursor('url(../assets/image/aim_assistant.png), pointer');
 
         //=============================add player==============================
         // this.player = this.physics.add.image(500,566,"player");
